@@ -17,10 +17,10 @@ import akio.apps.newsreader.model.Article;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
-    private View.OnClickListener onArticleItemClick;
+    private ListingEventListener listingEventListener;
 
-    public ArticleListAdapter(View.OnClickListener onArticleItemClick) {
-        this.onArticleItemClick = onArticleItemClick;
+    public ArticleListAdapter(ListingEventListener listingEventListener) {
+        this.listingEventListener = listingEventListener;
     }
 
     private AsyncListDiffer<Article> listDiffer = new AsyncListDiffer<>(this, DIFF_CALLBACK);
@@ -45,17 +45,20 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         listDiffer.submitList(articleList);
     }
 
-    static class ArticleViewHolder extends RecyclerView.ViewHolder {
+    class ArticleViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemListingArticleBinding viewBinding;
+        private Article boundArticle;
 
         public ArticleViewHolder(@NonNull View itemView) {
             super(itemView);
 
             viewBinding = ItemListingArticleBinding.bind(itemView);
+            itemView.setOnClickListener(view -> listingEventListener.onClickArticleItem(boundArticle));
         }
 
         void bind(Article article) {
+            boundArticle = article;
             viewBinding.listingArticleTitleText.setText(article.getTitle());
             viewBinding.listingArticleDescriptionText.setText(HtmlCompat.fromHtml(article.getDescription(), HtmlCompat.FROM_HTML_MODE_COMPACT));
             viewBinding.listingArticlePubDateText.setText(article.getPubDateTime());

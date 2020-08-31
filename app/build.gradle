@@ -15,14 +15,19 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "boolean", "LOGGING_ENABLED", "true"
+        }
         release {
+            buildConfigField "boolean", "LOGGING_ENABLED", "false"
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
 
     compileOptions {
@@ -57,4 +62,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    implementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
 }

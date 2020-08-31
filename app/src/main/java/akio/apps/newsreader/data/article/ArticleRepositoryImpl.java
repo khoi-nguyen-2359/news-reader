@@ -7,8 +7,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import akio.apps.newsreader.data.article.entity.Article;
-import akio.apps.newsreader.data.article.entity.Feed;
+import akio.apps.newsreader.data.article.entity.ArticleEntity;
+import akio.apps.newsreader.data.article.entity.FeedEntity;
 import akio.apps.newsreader.model.Resource;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,17 +24,17 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     @Override
-    public LiveData<Resource<List<Article>>> getArticles() {
-        MutableLiveData<Resource<List<Article>>> liveData = new MutableLiveData<>();
+    public LiveData<Resource<List<ArticleEntity>>> getArticles() {
+        MutableLiveData<Resource<List<ArticleEntity>>> liveData = new MutableLiveData<>();
 
-        rssApi.getLatestNews().enqueue(new Callback<Feed>() {
+        rssApi.getLatestNews().enqueue(new Callback<FeedEntity>() {
             @Override
-            public void onResponse(Call<Feed> call, Response<Feed> response) {
+            public void onResponse(Call<FeedEntity> call, Response<FeedEntity> response) {
                 liveData.setValue(new Resource.Success<>(response.body().getChannel().getArticles()));
             }
 
             @Override
-            public void onFailure(Call<Feed> call, Throwable t) {
+            public void onFailure(Call<FeedEntity> call, Throwable t) {
                 liveData.setValue(new Resource.Error<>(t, null));
             }
         });

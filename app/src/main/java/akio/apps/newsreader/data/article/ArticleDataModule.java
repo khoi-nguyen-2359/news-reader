@@ -10,7 +10,7 @@ import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.converter.jaxb.JaxbConverterFactory;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 @Module(includes = {ArticleDataModule.Bindings.class})
 public class ArticleDataModule {
@@ -40,7 +40,7 @@ public class ArticleDataModule {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(baseUrl)
-                .addConverterFactory(JaxbConverterFactory.create())
+                .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
     }
 

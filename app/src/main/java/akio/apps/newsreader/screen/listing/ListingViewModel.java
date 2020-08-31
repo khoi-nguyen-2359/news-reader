@@ -1,18 +1,15 @@
 package akio.apps.newsreader.screen.listing;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import javax.inject.Inject;
+import java.util.List;
 
-import akio.apps.newsreader.data.article.ArticleRepository;
+import akio.apps.newsreader.model.Article;
+import akio.apps.newsreader.model.Event;
 
-public class ListingViewModel extends ViewModel {
-
-    private final ArticleRepository articleRepository;
-
-    @Inject
-    public ListingViewModel(ArticleRepository articleRepository) {
-        this.articleRepository = articleRepository;
-    }
-
+public abstract class ListingViewModel extends ViewModel {
+    abstract LiveData<List<Article>> getArticleList();
+    abstract LiveData<Event<Throwable>> getError();
+    abstract LiveData<Boolean> isInProgress();
 }

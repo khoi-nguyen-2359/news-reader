@@ -19,6 +19,6 @@ public abstract class ListingModule {
         @Binds
         @IntoMap
         @ViewModelKey(ListingViewModel.class)
-        ViewModel forecastListViewModel(ListingViewModel viewModel);
+        ViewModel forecastListViewModel(ListingViewModelImpl viewModel);
     }
 }

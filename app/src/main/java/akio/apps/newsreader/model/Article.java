@@ -1,23 +1,13 @@
-package akio.apps.newsreader.data.article.entity;
-
-import javax.xml.bind.annotation.XmlElement;
+package akio.apps.newsreader.model;
 
 public class Article {
-    @XmlElement(name = "title")
     private final String title;
 
-    @XmlElement(name = "description")
     private final String description;
 
-    @XmlElement(name = "link")
     private final String link;
 
-    @XmlElement(name = "pubDate")
     private final String pubDateTime;
-
-    public Article() {
-        this("", "", "", "");
-    }
 
     public Article(String title, String description, String link, String pubDateTime) {
         this.title = title;
@@ -41,4 +31,5 @@ public class Article {
     public String getPubDateTime() {
         return pubDateTime;
     }
+
 }

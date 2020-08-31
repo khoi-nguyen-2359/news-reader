@@ -13,6 +13,11 @@ public class Resource<T> {
         public Success(@NonNull T data) {
             this.data = data;
         }
+
+        @NonNull
+        public T getData() {
+            return data;
+        }
     }
 
     static public class Error<T> extends Resource<T> {
@@ -24,6 +29,11 @@ public class Resource<T> {
         public Error(Throwable error, @Nullable T data) {
             this.error = error;
             this.data = data;
+        }
+
+        @Nullable
+        public T getData() {
+            return data;
         }
     }
 

@@ -15,11 +15,15 @@ import java.util.List;
 import akio.apps.newsreader.databinding.ItemListingArticleBinding;
 import akio.apps.newsreader.model.Article;
 
-import static androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY;
-
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
-    private AsyncListDiffer<Article> listDiffer = new AsyncListDiffer(this, DIFF_CALLBACK);
+    private View.OnClickListener onArticleItemClick;
+
+    public ArticleListAdapter(View.OnClickListener onArticleItemClick) {
+        this.onArticleItemClick = onArticleItemClick;
+    }
+
+    private AsyncListDiffer<Article> listDiffer = new AsyncListDiffer<>(this, DIFF_CALLBACK);
 
     @NonNull
     @Override
@@ -53,7 +57,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 
         void bind(Article article) {
             viewBinding.listingArticleTitleText.setText(article.getTitle());
-            viewBinding.listingArticleDescriptionText.setText(HtmlCompat.fromHtml(article.getDescription(), FROM_HTML_MODE_LEGACY));
+            viewBinding.listingArticleDescriptionText.setText(HtmlCompat.fromHtml(article.getDescription(), HtmlCompat.FROM_HTML_MODE_COMPACT));
             viewBinding.listingArticlePubDateText.setText(article.getPubDateTime());
         }
     }

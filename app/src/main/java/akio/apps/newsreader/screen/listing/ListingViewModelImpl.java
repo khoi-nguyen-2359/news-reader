@@ -13,7 +13,7 @@ import akio.apps.newsreader.data.article.entity.ArticleEntity;
 import akio.apps.newsreader.model.Article;
 import akio.apps.newsreader.model.ArticleMapper;
 import akio.apps.newsreader.model.Event;
-import akio.apps.newsreader.model.Resource;
+import akio.apps.newsreader.data.Resource;
 
 public class ListingViewModelImpl extends ListingViewModel {
 
@@ -22,7 +22,7 @@ public class ListingViewModelImpl extends ListingViewModel {
     private final MutableLiveData<Boolean> isInProgress = new MutableLiveData<>();
 
     private ArticleRepository articleRepository;
-    private LiveData<Resource<List<ArticleEntity>>> articleListSource;
+    private LiveData<Resource> articleListSource;
     private ArticleMapper articleMapper;
 
     @Inject
@@ -41,11 +41,16 @@ public class ListingViewModelImpl extends ListingViewModel {
         articleListSource.removeObserver(articleListObserver);
     }
 
-    private final Observer<? super Resource<List<ArticleEntity>>> articleListObserver = (Observer<Resource<List<ArticleEntity>>>) listResource -> {
+    private final Observer<? super Resource> articleListObserver = (Observer<Resource>) listResource -> {
         if (listResource instanceof Resource.Success) {
             Resource.Success<List<ArticleEntity>> successList = (Resource.Success<List<ArticleEntity>>) listResource;
             articleList.setValue(articleMapper.map(successList.getData()));
+        } else if (listResource instanceof Resource.Error) {
+            Resource.Error<List<ArticleEntity>> errorList = (Resource.Error<List<ArticleEntity>>) listResource;
+            error.setValue(new Event<>(errorList.getError()));
         }
+
+        isInProgress.setValue(listResource instanceof Resource.Loading);
     };
 
     @Override

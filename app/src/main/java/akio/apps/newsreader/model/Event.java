@@ -8,6 +8,10 @@ public class Event<T> {
 
     private Boolean hasBeenHandled = false;
 
+    public Event(T content) {
+        this.content = content;
+    }
+
     /**
      * Returns the content and prevents its use again.
      */

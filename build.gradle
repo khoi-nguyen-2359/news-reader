@@ -6,6 +6,7 @@ buildscript {
     ext.glide_version = "4.9.0"
     ext.room_version = "2.2.5"
     ext.lifecycle_version = "2.2.0"
+    ext.fragment_version = "1.2.5"
 
     repositories {
         google()

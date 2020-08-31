@@ -64,4 +64,8 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     implementation "com.squareup.okhttp3:mockwebserver:$okhttp_version"
+
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation "androidx.fragment:fragment:$fragment_version"
 }

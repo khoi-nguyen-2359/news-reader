@@ -1,4 +1,4 @@
-package akio.apps.newsreader.data.entity;
+package akio.apps.newsreader.data.article.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 

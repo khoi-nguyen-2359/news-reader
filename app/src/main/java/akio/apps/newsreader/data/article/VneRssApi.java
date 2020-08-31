@@ -1,6 +1,6 @@
-package akio.apps.newsreader.data;
+package akio.apps.newsreader.data.article;
 
-import akio.apps.newsreader.data.entity.Feed;
+import akio.apps.newsreader.data.article.entity.Feed;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

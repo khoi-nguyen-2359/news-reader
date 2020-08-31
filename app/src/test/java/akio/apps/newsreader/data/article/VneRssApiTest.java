@@ -1,18 +1,4 @@
-package akio.apps.newsreader.data;
-
-import static org.junit.Assert.*;
-
-import akio.apps.newsreader.TestHelper;
-import akio.apps.newsreader._di.ApplicationModule;
-import akio.apps.newsreader.data.entity.Article;
-import akio.apps.newsreader.data.entity.Channel;
-import akio.apps.newsreader.data.entity.Feed;
-import okhttp3.OkHttpClient;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+package akio.apps.newsreader.data.article;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,8 +6,21 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
+
+import akio.apps.newsreader.TestHelper;
+import akio.apps.newsreader.data.article.entity.Article;
+import akio.apps.newsreader.data.article.entity.Channel;
+import akio.apps.newsreader.data.article.entity.Feed;
+import okhttp3.OkHttpClient;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class VneRssApiTest {
 
@@ -33,9 +32,9 @@ public class VneRssApiTest {
     public void setup() {
         mockServer = new MockWebServer();
 
-        OkHttpClient.Builder builder = ApplicationModule.okHttpClientBuilder();
-        Retrofit retrofit = ApplicationModule.vneRssRetrofit(builder, mockServer.url("/").toString());
-        vneRssApi = ApplicationModule.vneRssApi(retrofit);
+        OkHttpClient.Builder builder = ArticleDataModule.okHttpClientBuilder();
+        Retrofit retrofit = ArticleDataModule.vneRssRetrofit(builder, mockServer.url("/").toString());
+        vneRssApi = ArticleDataModule.vneRssApi(retrofit);
     }
 
     @After

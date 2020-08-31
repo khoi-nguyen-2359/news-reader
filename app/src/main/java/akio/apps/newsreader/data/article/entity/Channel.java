@@ -1,7 +1,6 @@
-package akio.apps.newsreader.data.entity;
+package akio.apps.newsreader.data.article.entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;

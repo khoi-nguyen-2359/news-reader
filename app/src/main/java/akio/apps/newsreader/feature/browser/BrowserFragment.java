@@ -1,5 +1,6 @@
 package akio.apps.newsreader.feature.browser;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.webkit.WebSettingsCompat;
+import androidx.webkit.WebViewFeature;
 
 import akio.apps.newsreader.databinding.FragmentBrowserBinding;
 import akio.apps.newsreader.feature.BaseFragment;
@@ -33,6 +36,11 @@ public class BrowserFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
+        int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)
+                && nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
+            WebSettingsCompat.setForceDark(viewBinding.browserWebView.getSettings(), WebSettingsCompat.FORCE_DARK_ON);
+        }
         viewBinding.browserWebView.getSettings().setJavaScriptEnabled(true);
         String url = getArgUrl();
         viewBinding.browserWebView.loadUrl(url);

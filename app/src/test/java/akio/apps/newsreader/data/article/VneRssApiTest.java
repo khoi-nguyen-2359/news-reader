@@ -10,7 +10,6 @@ import java.util.List;
 
 import akio.apps.newsreader.TestHelper;
 import akio.apps.newsreader.data.article.entity.ArticleEntity;
-import akio.apps.newsreader.data.article.entity.ChannelEntity;
 import akio.apps.newsreader.data.article.entity.FeedEntity;
 import okhttp3.OkHttpClient;
 import okhttp3.mockwebserver.MockResponse;
@@ -57,9 +56,7 @@ public class VneRssApiTest {
         Response<FeedEntity> response = call.execute();
         FeedEntity feed = response.body();
         assertNotNull(feed);
-        ChannelEntity channel = feed.getChannel();
-        assertNotNull(channel);
-        List<ArticleEntity> articles = channel.getArticles();
+        List<ArticleEntity> articles = feed.getArticles();
         assertNotNull(articles);
         assertEquals(2, articles.size());
         assertEquals("Thêm một người nhập viện do ngộ độc pate Minh Chay", articles.get(0).getTitle());

@@ -1,6 +1,7 @@
 package akio.apps.newsreader.feature;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,14 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
     };
 
+    private View.OnClickListener onClickNavIcon = view -> {
+        if (viewBinding.homeDrawerLayout.isOpen()) {
+            viewBinding.homeDrawerLayout.close();
+        } else {
+            viewBinding.homeDrawerLayout.open();
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
@@ -34,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
 
         viewBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
+
+        viewBinding.homeToolbar.setNavigationOnClickListener(onClickNavIcon);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()

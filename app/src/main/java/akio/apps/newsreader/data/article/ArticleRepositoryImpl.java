@@ -31,7 +31,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         rssApi.getLatestNews().enqueue(new Callback<FeedEntity>() {
             @Override
             public void onResponse(Call<FeedEntity> call, Response<FeedEntity> response) {
-                liveData.setValue(new Resource.Success<>(response.body().getChannel().getArticles()));
+                liveData.setValue(new Resource.Success<>(response.body().getArticles()));
             }
 
             @Override

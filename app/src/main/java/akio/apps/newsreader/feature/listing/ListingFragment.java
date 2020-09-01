@@ -37,9 +37,6 @@ public class ListingFragment extends BaseFragment {
 
     public ListingEventListener listingEventListener;
 
-    public ListingFragment() {
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

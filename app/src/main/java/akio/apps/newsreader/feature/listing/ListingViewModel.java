@@ -12,4 +12,6 @@ public abstract class ListingViewModel extends ViewModel {
     abstract LiveData<List<Article>> getArticleList();
     abstract LiveData<Event<Throwable>> getError();
     abstract LiveData<Boolean> isInProgress();
+
+    abstract void reloadFeed();
 }

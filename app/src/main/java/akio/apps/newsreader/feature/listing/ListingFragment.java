@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Observer;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
@@ -35,7 +36,12 @@ public class ListingFragment extends BaseFragment {
                 .show();
     });
 
+    @Nullable
     public ListingEventListener listingEventListener;
+
+    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener = () -> {
+        listingViewModel.reloadFeed();
+    };
 
     @Nullable
     @Override
@@ -51,7 +57,7 @@ public class ListingFragment extends BaseFragment {
     protected void initViews() {
         listingAdapter = new ArticleListAdapter(listingEventListener);
         viewBinding.listingArticlesRecyclerView.setAdapter(listingAdapter);
-        viewBinding.listingSwipeLayout.setEnabled(false);
+        viewBinding.listingSwipeLayout.setOnRefreshListener(swipeRefreshListener);
     }
 
     protected void initObservers() {

@@ -30,15 +30,16 @@ public class ListingViewModelImpl extends ListingViewModel {
         this.articleRepository = articleRepository;
         this.articleMapper = articleMapper;
 
-        this.articleListSource = articleRepository.getArticles();
-        this.articleListSource.observeForever(articleListObserver);
+        reloadFeed();
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
 
-        articleListSource.removeObserver(articleListObserver);
+        if (articleListSource != null) {
+            articleListSource.removeObserver(articleListObserver);
+        }
     }
 
     private final Observer<? super Resource> articleListObserver = (Observer<Resource>) listResource -> {
@@ -66,5 +67,14 @@ public class ListingViewModelImpl extends ListingViewModel {
     @Override
     LiveData<Boolean> isInProgress() {
         return isInProgress;
+    }
+
+    @Override
+    void reloadFeed() {
+        if (articleListSource != null) {
+            articleListSource.removeObserver(articleListObserver);
+        }
+        this.articleListSource = articleRepository.getArticles();
+        this.articleListSource.observeForever(articleListObserver);
     }
 }

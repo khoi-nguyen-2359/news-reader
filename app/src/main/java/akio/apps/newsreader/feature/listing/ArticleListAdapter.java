@@ -87,7 +87,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     static final DiffUtil.ItemCallback<Article> DIFF_CALLBACK = new DiffUtil.ItemCallback<Article>() {
         @Override
         public boolean areItemsTheSame(@NonNull Article oldItem, @NonNull Article newItem) {
-            return oldItem.getLink().equals(newItem.getLink());
+            return oldItem.getGuid().equals(newItem.getGuid()) && oldItem.getLink().equals(newItem.getLink());
         }
 
         @Override

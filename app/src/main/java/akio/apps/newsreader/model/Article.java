@@ -9,11 +9,14 @@ public class Article {
 
     private final String pubDateTime;
 
-    public Article(String title, String description, String link, String pubDateTime) {
+    private final String guid;
+
+    public Article(String title, String description, String link, String pubDateTime, String guid) {
         this.title = title;
         this.description = description;
         this.link = link;
         this.pubDateTime = pubDateTime;
+        this.guid = guid;
     }
 
     public String getTitle() {
@@ -32,4 +35,7 @@ public class Article {
         return pubDateTime;
     }
 
+    public String getGuid() {
+        return guid;
+    }
 }

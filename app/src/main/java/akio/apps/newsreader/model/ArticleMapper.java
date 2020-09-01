@@ -14,7 +14,7 @@ public class ArticleMapper {
     }
 
     public Article map(ArticleEntity entity) {
-        return new Article(entity.getTitle(), entity.getDescription(), entity.getLink(), entity.getPubDateTime());
+        return new Article(entity.getTitle(), entity.getDescription(), entity.getLink(), entity.getPubDateTime(), entity.getGuid());
     }
 
     public List<Article> map(List<ArticleEntity> entityList) {

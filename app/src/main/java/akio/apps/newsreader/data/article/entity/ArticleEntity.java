@@ -17,6 +17,9 @@ public class ArticleEntity {
     @Element(name = "pubDate")
     private String pubDateTime;
 
+    @Element(name = "guid")
+    private String guid;
+
     public String getTitle() {
         return title;
     }
@@ -47,5 +50,13 @@ public class ArticleEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
     }
 }

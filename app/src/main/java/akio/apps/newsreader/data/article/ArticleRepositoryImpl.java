@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import akio.apps.newsreader.data.article.entity.ArticleEntity;
 import akio.apps.newsreader.data.article.entity.FeedEntity;
 import akio.apps.newsreader.data.Resource;
+import akio.apps.newsreader.model.Article;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,8 +25,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
     }
 
     @Override
-    public LiveData<Resource> getArticles() {
-        MutableLiveData<Resource> liveData = new MutableLiveData<>();
+    public LiveData<Resource<List<ArticleEntity>>> getArticles() {
+        MutableLiveData<Resource<List<ArticleEntity>>> liveData = new MutableLiveData<>();
         liveData.setValue(new Resource.Loading<>(null));
 
         rssApi.getLatestNews().enqueue(new Callback<FeedEntity>() {

@@ -22,7 +22,7 @@ public class ListingViewModelImpl extends ListingViewModel {
     private final MutableLiveData<Boolean> isInProgress = new MutableLiveData<>();
 
     private ArticleRepository articleRepository;
-    private LiveData<Resource> articleListSource;
+    private LiveData<Resource<List<ArticleEntity>>> articleListSource;
     private ArticleMapper articleMapper;
 
     @Inject
@@ -42,7 +42,7 @@ public class ListingViewModelImpl extends ListingViewModel {
         }
     }
 
-    private final Observer<? super Resource> articleListObserver = (Observer<Resource>) listResource -> {
+    private final Observer<? super Resource<List<ArticleEntity>>> articleListObserver = (Observer<Resource<List<ArticleEntity>>>) listResource -> {
         if (listResource instanceof Resource.Success) {
             Resource.Success<List<ArticleEntity>> successList = (Resource.Success<List<ArticleEntity>>) listResource;
             articleList.setValue(articleMapper.map(successList.getData()));

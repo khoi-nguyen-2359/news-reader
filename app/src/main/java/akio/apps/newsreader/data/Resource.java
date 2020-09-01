@@ -3,11 +3,11 @@ package akio.apps.newsreader.data;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class Resource {
+public class Resource<T> {
     public Resource() {
     }
 
-    static public class Success<T> extends Resource {
+    static public class Success<T> extends Resource<T> {
         @NonNull
         private final T data;
 
@@ -21,7 +21,7 @@ public class Resource {
         }
     }
 
-    static public class Error<T> extends Resource {
+    static public class Error<T> extends Resource<T> {
         private final Throwable error;
 
         @Nullable
@@ -42,7 +42,7 @@ public class Resource {
         }
     }
 
-    public static class Loading<T> extends Resource {
+    public static class Loading<T> extends Resource<T> {
         @Nullable
         private T data;
 

@@ -4,9 +4,9 @@
     <string name="application_preferences_title">Preferences</string>
     <string name="application_preferences_dark_mode_title">Dark Mode</string>
 
-    <string name="application_preferences_dark_mode_system">Follow system settings</string>
-    <string name="application_preferences_dark_mode_night_no">Use light mode</string>
-    <string name="application_preferences_dark_mode_night_yes">Use dark mode</string>
+    <string name="application_preferences_dark_mode_system">Use system settings</string>
+    <string name="application_preferences_dark_mode_night_no">Always light</string>
+    <string name="application_preferences_dark_mode_night_yes">Always dark</string>
 
     <string name="pref_value_dark_mode_default">MODE_NIGHT_FOLLOW_SYSTEM</string>
     <string name="pref_value_dark_mode_night_system">MODE_NIGHT_FOLLOW_SYSTEM</string>

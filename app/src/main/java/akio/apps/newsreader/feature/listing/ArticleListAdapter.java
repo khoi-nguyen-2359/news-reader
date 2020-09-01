@@ -5,10 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -17,9 +20,10 @@ import akio.apps.newsreader.model.Article;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ArticleViewHolder> {
 
+    @Nullable
     private ListingEventListener listingEventListener;
 
-    public ArticleListAdapter(ListingEventListener listingEventListener) {
+    public ArticleListAdapter(@Nullable ListingEventListener listingEventListener) {
         this.listingEventListener = listingEventListener;
     }
 
@@ -28,7 +32,11 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @NonNull
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ArticleViewHolder(ItemListingArticleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false).getRoot());
+        @NotNull ItemListingArticleBinding itemViewBinding = ItemListingArticleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ArticleViewHolder(
+                itemViewBinding,
+                listingEventListener
+        );
     }
 
     @Override
@@ -45,16 +53,21 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         listDiffer.submitList(articleList);
     }
 
-    class ArticleViewHolder extends RecyclerView.ViewHolder {
+    public static class ArticleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ItemListingArticleBinding viewBinding;
+
+        @Nullable
+        private ListingEventListener listingEventListener;
+
         private Article boundArticle;
 
-        public ArticleViewHolder(@NonNull View itemView) {
-            super(itemView);
+        public ArticleViewHolder(@NonNull ItemListingArticleBinding itemViewBinding, @Nullable ListingEventListener listingEventListener) {
+            super(itemViewBinding.getRoot());
 
-            viewBinding = ItemListingArticleBinding.bind(itemView);
-            itemView.setOnClickListener(view -> listingEventListener.onClickArticleItem(boundArticle));
+            viewBinding = itemViewBinding;
+            this.listingEventListener = listingEventListener;
+            itemView.setOnClickListener(this);
         }
 
         void bind(Article article) {
@@ -62,6 +75,12 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             viewBinding.listingArticleTitleText.setText(article.getTitle());
             viewBinding.listingArticleDescriptionText.setText(HtmlCompat.fromHtml(article.getDescription(), HtmlCompat.FROM_HTML_MODE_COMPACT));
             viewBinding.listingArticlePubDateText.setText(article.getPubDateTime());
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (listingEventListener != null)
+                listingEventListener.onClickArticleItem(boundArticle);
         }
     }
 

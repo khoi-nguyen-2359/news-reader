@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="?selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/listing_article_item_padding_horizontal"
+    android:paddingTop="@dimen/listing_article_item_padding_top"
+    android:paddingEnd="@dimen/listing_article_item_padding_horizontal"
+    android:paddingBottom="@dimen/listing_article_item_padding_bottom">
 
     <TextView
         android:id="@+id/listing_article_title_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/listing_article_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Article title" />
 
     <TextView
+        android:layout_marginTop="@dimen/listing_article_text_spacing"
         android:id="@+id/listing_article_description_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@color/listing_article_text"
+        android:textSize="12sp"
+        tools:text="Article description" />
+
     <TextView
         android:id="@+id/listing_article_pub_date_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/listing_article_text_spacing"
+        android:textColor="@color/listing_article_text"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        tools:text="Article pubDate" />
 
 </LinearLayout>

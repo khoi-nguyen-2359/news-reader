@@ -4,6 +4,7 @@
     <PreferenceCategory>
 
         <ListPreference
+            app:icon="@drawable/ic_brightness"
             app:defaultValue="@string/pref_value_dark_mode_default"
             app:entries="@array/application_preferences_dark_mode_entries"
             app:entryValues="@array/application_preferences_dark_mode_values"

@@ -1,4 +1,4 @@
-package akio.apps.newsreader.screen;
+package akio.apps.newsreader.feature;
 
 import android.os.Bundle;
 
@@ -8,19 +8,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import akio.apps.newsreader.R;
-import akio.apps.newsreader.databinding.ActivityMainBinding;
-import akio.apps.newsreader.screen.browser.BrowserFragment;
-import akio.apps.newsreader.screen.listing.ListingEventListener;
-import akio.apps.newsreader.screen.listing.ListingFragment;
+import akio.apps.newsreader.databinding.ActivityHomeBinding;
+import akio.apps.newsreader.feature.browser.BrowserFragment;
+import akio.apps.newsreader.feature.listing.ListingEventListener;
+import akio.apps.newsreader.feature.listing.ListingFragment;
+import akio.apps.newsreader.feature.preferences.ApplicationPreferencesFragment;
 import dagger.android.AndroidInjection;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
-    private ActivityMainBinding viewBinding;
+    private ActivityHomeBinding viewBinding;
 
     private ListingEventListener listingEventListener = article -> {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_fragment_container, BrowserFragment.createInstance(article.getLink()))
+                .replace(R.id.home_content_fragment_container, BrowserFragment.createInstance(article.getLink()))
                 .addToBackStack(null)
                 .commit();
     };
@@ -31,12 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        viewBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        viewBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fragment_container, ListingFragment.createInstance())
+                    .replace(R.id.home_content_fragment_container, ListingFragment.createInstance())
+                    .commit();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.home_side_content_fragment_container, ApplicationPreferencesFragment.createInstance())
                     .commit();
         }
     }

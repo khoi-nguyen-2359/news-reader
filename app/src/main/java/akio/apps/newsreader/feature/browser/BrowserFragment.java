@@ -1,4 +1,4 @@
-package akio.apps.newsreader.screen.browser;
+package akio.apps.newsreader.feature.browser;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import akio.apps.newsreader.databinding.FragmentBrowserBinding;
-import akio.apps.newsreader.screen.BaseDiFragment;
+import akio.apps.newsreader.feature.BaseFragment;
 
-public class BrowserFragment extends BaseDiFragment {
+public class BrowserFragment extends BaseFragment {
 
     private FragmentBrowserBinding viewBinding;
 

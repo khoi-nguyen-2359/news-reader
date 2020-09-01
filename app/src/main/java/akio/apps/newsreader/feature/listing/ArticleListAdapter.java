@@ -1,4 +1,4 @@
-package akio.apps.newsreader.screen.listing;
+package akio.apps.newsreader.feature.listing;
 
 import android.view.LayoutInflater;
 import android.view.View;

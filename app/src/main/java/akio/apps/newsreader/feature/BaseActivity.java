@@ -1,4 +1,4 @@
-package akio.apps.newsreader.screen;
+package akio.apps.newsreader.feature;
 
 import android.os.Bundle;
 

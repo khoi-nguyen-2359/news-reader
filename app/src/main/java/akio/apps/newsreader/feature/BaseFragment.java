@@ -1,4 +1,4 @@
-package akio.apps.newsreader.screen;
+package akio.apps.newsreader.feature;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 
-public abstract class BaseDiFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
     private ViewModelProvider viewModelProvider;

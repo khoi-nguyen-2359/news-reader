@@ -4,8 +4,8 @@ import javax.inject.Singleton;
 
 import akio.apps.newsreader.NewsReaderApplication;
 import akio.apps.newsreader.data.article.ArticleDataModule;
-import akio.apps.newsreader.screen.browser.BrowserModule;
-import akio.apps.newsreader.screen.listing.ListingModule;
+import akio.apps.newsreader.feature.browser.BrowserModule;
+import akio.apps.newsreader.feature.listing.ListingModule;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;

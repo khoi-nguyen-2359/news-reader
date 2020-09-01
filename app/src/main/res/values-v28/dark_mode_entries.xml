@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="application_preferences_dark_mode_entries">
+        <item>@string/application_preferences_dark_mode_system</item>
+        <item>@string/application_preferences_dark_mode_night_no</item>
+        <item>@string/application_preferences_dark_mode_night_yes</item>
+    </string-array>
+
+    <string-array name="application_preferences_dark_mode_values">
+        <item>@string/pref_value_dark_mode_night_system</item>
+        <item>@string/pref_value_dark_mode_night_no</item>
+        <item>@string/pref_value_dark_mode_night_yes</item>
+    </string-array>
+</resources>

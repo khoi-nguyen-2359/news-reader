@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory>
+
+        <ListPreference
+            app:defaultValue="@string/pref_value_dark_mode_default"
+            app:entries="@array/application_preferences_dark_mode_entries"
+            app:entryValues="@array/application_preferences_dark_mode_values"
+            app:key="@string/application_preferences_dark_mode_key"
+            app:title="@string/application_preferences_dark_mode_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -28,11 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     };
 
     private View.OnClickListener onClickNavIcon = view -> {
-        if (viewBinding.homeDrawerLayout.isOpen()) {
-            viewBinding.homeDrawerLayout.close();
-        } else {
-            viewBinding.homeDrawerLayout.open();
-        }
+        viewBinding.homeDrawerLayout.open();
     };
 
     @Override

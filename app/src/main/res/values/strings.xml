@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">NewsReader</string>
     <string name="application_preferences_dark_mode_key">application_preferences_dark_mode_key</string>
-    <string name="application_preferences_title">Preferences</string>
     <string name="application_preferences_dark_mode_title">App Theme</string>
 
     <string name="application_preferences_dark_mode_system">Use system settings</string>

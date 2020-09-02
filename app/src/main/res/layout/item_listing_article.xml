@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/listing_article_text"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         tools:text="Article title" />
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/listing_article_text"
-        android:textSize="12sp"
+        android:textSize="14sp"
         tools:text="Article description" />
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/listing_article_text_spacing"
         android:textColor="@color/listing_article_text"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textStyle="italic"
         tools:text="Article pubDate" />
 

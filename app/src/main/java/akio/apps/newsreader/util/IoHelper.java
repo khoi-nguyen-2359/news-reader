@@ -6,7 +6,7 @@ import java.io.InputStream;
 
 public class IoHelper {
 
-    public static final String readTextStream(InputStream inputStream) throws IOException {
+    public static String readTextStream(InputStream inputStream) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int length;

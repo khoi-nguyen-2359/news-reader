@@ -18,7 +18,7 @@ public class PreferencesAppSettingsStorage implements AppSettingsStorage {
     private Context appContext;
     private MutableLiveData<String> darkMode = new MutableLiveData<>();
 
-    private final SharedPreferences.OnSharedPreferenceChangeListener onAppSettingsPrerencesChanged = (sharedPreferences, key) -> {
+    private final SharedPreferences.OnSharedPreferenceChangeListener onAppSettingsPreferencesChanged = (sharedPreferences, key) -> {
         if (darkModePrefKey.equals(key)) {
             darkMode.setValue(getDarkModeValue());
         }
@@ -30,7 +30,8 @@ public class PreferencesAppSettingsStorage implements AppSettingsStorage {
         darkModePrefKey = appContext.getString(R.string.application_preferences_dark_mode_key);
         this.appContext = appContext;
 
-        appSettingsPreferences.registerOnSharedPreferenceChangeListener(onAppSettingsPrerencesChanged);
+        // this listener is kept as weak reference, no unregistering needed
+        appSettingsPreferences.registerOnSharedPreferenceChangeListener(onAppSettingsPreferencesChanged);
     }
 
     @Override

@@ -3,6 +3,8 @@ package akio.apps.newsreader.data.article;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,12 +33,17 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
         rssApi.getLatestNews().enqueue(new Callback<FeedEntity>() {
             @Override
-            public void onResponse(Call<FeedEntity> call, Response<FeedEntity> response) {
-                liveData.setValue(new Resource.Success<>(response.body().getArticles()));
+            public void onResponse(@NotNull Call<FeedEntity> call, @NotNull Response<FeedEntity> response) {
+                FeedEntity responseBody = response.body();
+                if (responseBody == null) {
+                    liveData.setValue(new Resource.Error<>(new Exception("Article listing response body is null"), null));
+                } else {
+                    liveData.setValue(new Resource.Success<>(responseBody.getArticles()));
+                }
             }
 
             @Override
-            public void onFailure(Call<FeedEntity> call, Throwable t) {
+            public void onFailure(@NotNull Call<FeedEntity> call, @NotNull Throwable t) {
                 liveData.setValue(new Resource.Error<>(t, null));
             }
         });

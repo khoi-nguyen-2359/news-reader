@@ -9,7 +9,7 @@ import dagger.Binds;
 import dagger.Module;
 
 @Module(includes = {ApplicationModule.Bindings.class})
-public abstract class ApplicationModule {
+public interface ApplicationModule {
 
     @Module
     interface Bindings {

@@ -19,9 +19,6 @@ public interface AppSettingsModule {
     @Module
     interface Bindings {
         @Binds
-        AppSettingsStorage appSettingsStorage(PreferencesAppSettingsStorage storage);
-
-        @Binds
         @IntoMap
         @ViewModelKey(AppSettingsViewModel.class)
         ViewModel appSettingsViewModel(AppSettingsViewModelImpl viewModel);

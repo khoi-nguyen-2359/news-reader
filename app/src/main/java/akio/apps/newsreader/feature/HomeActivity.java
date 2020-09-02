@@ -14,43 +14,38 @@ import akio.apps.newsreader.feature.browser.BrowserFragment;
 import akio.apps.newsreader.feature.listing.ListingEventListener;
 import akio.apps.newsreader.feature.listing.ListingFragment;
 import akio.apps.newsreader.feature.preferences.ApplicationPreferencesFragment;
-import dagger.android.AndroidInjection;
 
 public class HomeActivity extends AppCompatActivity {
 
     private ActivityHomeBinding viewBinding;
 
-    private ListingEventListener listingEventListener = article -> {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_content_fragment_container, BrowserFragment.createInstance(article.getLink()))
-                .addToBackStack(null)
-                .commit();
-    };
-
-    private View.OnClickListener onClickNavIcon = view -> {
-        viewBinding.homeDrawerLayout.open();
-    };
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-
         super.onCreate(savedInstanceState);
 
+        initViews();
+        initFragments(savedInstanceState);
+    }
+
+    private void initViews() {
         viewBinding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
+        setSupportActionBar(viewBinding.homeToolbar);
         viewBinding.homeToolbar.setNavigationOnClickListener(onClickNavIcon);
+    }
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.home_content_fragment_container, ListingFragment.createInstance())
-                    .commit();
+    private void initFragments(Bundle savedInstanceState) {
+        if (savedInstanceState != null)
+            return;
 
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.home_side_content_fragment_container, ApplicationPreferencesFragment.createInstance())
-                    .commit();
-        }
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_content_fragment_container, ListingFragment.createInstance())
+                .commit();
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_side_content_fragment_container, ApplicationPreferencesFragment.createInstance())
+                .commit();
     }
 
     @Override
@@ -62,4 +57,15 @@ public class HomeActivity extends AppCompatActivity {
             listingFragment.listingEventListener = listingEventListener;
         }
     }
+
+    private ListingEventListener listingEventListener = article -> {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_content_fragment_container, BrowserFragment.createInstance(article.getLink()))
+                .addToBackStack(null)
+                .commit();
+    };
+
+    private View.OnClickListener onClickNavIcon = view -> {
+        viewBinding.homeDrawerLayout.open();
+    };
 }

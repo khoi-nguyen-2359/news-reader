@@ -16,6 +16,16 @@ import akio.apps.newsreader.feature.BaseFragment;
 
 public class BrowserFragment extends BaseFragment {
 
+    private static final String ARG_URL = "ARG_URL";
+
+    public static BrowserFragment createInstance(String url) {
+        BrowserFragment fragment = new BrowserFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_URL, url);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     private FragmentBrowserBinding viewBinding;
 
     private String getArgUrl() {
@@ -49,15 +59,5 @@ public class BrowserFragment extends BaseFragment {
     @Override
     protected void initObservers() {
 
-    }
-
-    private static final String ARG_URL = "ARG_URL";
-
-    public static BrowserFragment createInstance(String url) {
-        BrowserFragment fragment = new BrowserFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_URL, url);
-        fragment.setArguments(args);
-        return fragment;
     }
 }

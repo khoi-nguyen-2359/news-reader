@@ -14,8 +14,10 @@ import javax.inject.Inject;
 import dagger.android.support.AndroidSupportInjection;
 
 public abstract class BaseFragment extends Fragment {
+    
     @Inject
     ViewModelProvider.Factory viewModelFactory;
+
     private ViewModelProvider viewModelProvider;
 
     @Override

@@ -21,27 +21,18 @@ import akio.apps.newsreader.feature.BaseFragment;
 
 public class ListingFragment extends BaseFragment {
 
+    public static ListingFragment createInstance() {
+        return new ListingFragment();
+    }
+
     private ListingViewModel listingViewModel;
 
     private FragmentListingBinding viewBinding;
+
     private ArticleListAdapter listingAdapter;
-
-    private Observer<? super Boolean> isInProgressObserver = (Observer<Boolean>) isInProgress -> {
-        viewBinding.listingSwipeLayout.setRefreshing(isInProgress);
-    };
-
-    private Observer<? super Event<Throwable>> errorObserver = new EventObserver<>(throwable -> {
-        new AlertDialog.Builder(requireActivity())
-                .setMessage(throwable.getMessage())
-                .show();
-    });
 
     @Nullable
     public ListingEventListener listingEventListener;
-
-    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener = () -> {
-        listingViewModel.reloadFeed();
-    };
 
     @Nullable
     @Override
@@ -70,7 +61,17 @@ public class ListingFragment extends BaseFragment {
         listingAdapter.submitList(articles);
     };
 
-    public static ListingFragment createInstance() {
-        return new ListingFragment();
-    }
+    private Observer<? super Boolean> isInProgressObserver = (Observer<Boolean>) isInProgress -> {
+        viewBinding.listingSwipeLayout.setRefreshing(isInProgress);
+    };
+
+    private Observer<? super Event<Throwable>> errorObserver = new EventObserver<>(throwable -> {
+        new AlertDialog.Builder(requireActivity())
+                .setMessage(throwable.getMessage())
+                .show();
+    });
+
+    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener = () -> {
+        listingViewModel.reloadFeed();
+    };
 }

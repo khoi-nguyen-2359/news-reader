@@ -23,16 +23,16 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Nullable
     private ListingEventListener listingEventListener;
 
+    private AsyncListDiffer<Article> listDiffer = new AsyncListDiffer<>(this, DIFF_CALLBACK);
+
     public ArticleListAdapter(@Nullable ListingEventListener listingEventListener) {
         this.listingEventListener = listingEventListener;
     }
 
-    private AsyncListDiffer<Article> listDiffer = new AsyncListDiffer<>(this, DIFF_CALLBACK);
-
     @NonNull
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        @NotNull ItemListingArticleBinding itemViewBinding = ItemListingArticleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemListingArticleBinding itemViewBinding = ItemListingArticleBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ArticleViewHolder(
                 itemViewBinding,
                 listingEventListener

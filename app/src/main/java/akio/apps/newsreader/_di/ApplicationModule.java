@@ -10,8 +10,8 @@ import dagger.android.ContributesAndroidInjector;
 @Module(includes = {ApplicationModule.Bindings.class})
 public abstract class ApplicationModule {
 
-    @ContributesAndroidInjector
-    abstract HomeActivity mainActivity();
+//    @ContributesAndroidInjector
+//    abstract HomeActivity mainActivity();
 
     @Module
     interface Bindings {

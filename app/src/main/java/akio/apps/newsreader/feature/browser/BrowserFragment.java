@@ -2,32 +2,22 @@ package akio.apps.newsreader.feature.browser;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.webkit.WebSettingsCompat;
-import androidx.webkit.WebViewClientCompat;
 import androidx.webkit.WebViewFeature;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import akio.apps.newsreader.databinding.FragmentBrowserBinding;
-import akio.apps.newsreader.feature.BaseFragment;
-import akio.apps.newsreader.util.IoHelper;
 
-public class BrowserFragment extends BaseFragment {
+public class BrowserFragment extends Fragment {
 
     private static final String ARG_URL = "ARG_URL";
 
@@ -53,12 +43,13 @@ public class BrowserFragment extends BaseFragment {
     }
 
     @Override
-    protected void initDependencies() {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        initViews();
     }
 
-    @Override
-    protected void initViews() {
+    private void initViews() {
         String articleUrl = getArgUrl();
 
         int nightModeFlags = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
@@ -91,10 +82,5 @@ public class BrowserFragment extends BaseFragment {
         viewBinding.browserWebView.evaluateJavascript(js, s -> {
             Log.d("browser", "evaluateJavascript done: " + s);
         });
-    }
-
-    @Override
-    protected void initObservers() {
-
     }
 }

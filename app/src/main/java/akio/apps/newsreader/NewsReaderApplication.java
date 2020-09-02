@@ -8,6 +8,7 @@ import androidx.preference.PreferenceManager;
 import javax.inject.Inject;
 
 import akio.apps.newsreader._di.DaggerApplicationComponent;
+import akio.apps.newsreader.data.settings.AppSettingsStorage;
 import akio.apps.newsreader.util.DarkModeHelper;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -18,19 +19,16 @@ public class NewsReaderApplication extends Application implements HasAndroidInje
     @Inject
     DispatchingAndroidInjector<Object> dispatchingAndroidInjector;
 
+    @Inject
+    AppSettingsStorage appSettingsStorage;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         DaggerApplicationComponent.factory().create(this).inject(this);
 
-        restoreApplicationTheme();
-    }
-
-    private void restoreApplicationTheme() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String darkModePrefKey = getString(R.string.application_preferences_dark_mode_key);
-        DarkModeHelper.applyDarkModePreference(this, sharedPrefs, darkModePrefKey);
+        DarkModeHelper.applyDarkMode(this, appSettingsStorage.getDarkModeValue());
     }
 
     @Override

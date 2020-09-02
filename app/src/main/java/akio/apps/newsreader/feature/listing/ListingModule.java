@@ -9,10 +9,10 @@ import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoMap;
 
 @Module(includes = {ListingModule.Bindings.class})
-public abstract class ListingModule {
+public interface ListingModule {
 
     @ContributesAndroidInjector
-    abstract ListingFragment listingFragment();
+    ListingFragment listingFragment();
 
     @Module
     interface Bindings {

@@ -4,8 +4,8 @@ import javax.inject.Singleton;
 
 import akio.apps.newsreader.NewsReaderApplication;
 import akio.apps.newsreader.data.article.ArticleDataModule;
-import akio.apps.newsreader.feature.browser.BrowserModule;
 import akio.apps.newsreader.feature.listing.ListingModule;
+import akio.apps.newsreader.feature.settings.AppSettingsModule;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
@@ -17,7 +17,7 @@ import dagger.android.AndroidInjector;
         ApplicationModule.class,
         ArticleDataModule.class,
         ListingModule.class,
-        BrowserModule.class,
+        AppSettingsModule.class
 })
 public interface ApplicationComponent extends AndroidInjector<NewsReaderApplication> {
     @Component.Factory

@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 import akio.apps.newsreader.databinding.ItemListingArticleBinding;

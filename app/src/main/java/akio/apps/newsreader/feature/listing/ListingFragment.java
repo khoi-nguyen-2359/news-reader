@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import java.util.List;
 
+import akio.apps.newsreader.R;
 import akio.apps.newsreader.databinding.FragmentListingBinding;
 import akio.apps.newsreader.model.Article;
 import akio.apps.newsreader.model.Event;
@@ -49,6 +53,10 @@ public class ListingFragment extends BaseFragment {
         listingAdapter = new ArticleListAdapter(listingEventListener);
         viewBinding.listingArticlesRecyclerView.setAdapter(listingAdapter);
         viewBinding.listingSwipeLayout.setOnRefreshListener(swipeRefreshListener);
+
+        DividerItemDecoration dividerDecoration = new DividerItemDecoration(getContext(), RecyclerView.VERTICAL);
+        dividerDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.listing_article_item_divider));
+        viewBinding.listingArticlesRecyclerView.addItemDecoration(dividerDecoration);
     }
 
     protected void initObservers() {

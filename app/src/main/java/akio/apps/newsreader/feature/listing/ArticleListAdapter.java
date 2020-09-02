@@ -1,5 +1,7 @@
 package akio.apps.newsreader.feature.listing;
 
+import android.graphics.drawable.Drawable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +73,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         void bind(Article article) {
             boundArticle = article;
             viewBinding.listingArticleTitleText.setText(article.getTitle());
-            viewBinding.listingArticleDescriptionText.setText(HtmlCompat.fromHtml(article.getDescription(), HtmlCompat.FROM_HTML_MODE_COMPACT));
+            viewBinding.listingArticleDescriptionText.setText(HtmlCompat.fromHtml(article.getDescription(), HtmlCompat.FROM_HTML_MODE_LEGACY, LazyImageGetter.getInstance(), null));
             viewBinding.listingArticlePubDateText.setText(article.getPubDateTime());
         }
 

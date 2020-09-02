@@ -19,6 +19,6 @@ public interface ListingModule {
         @Binds
         @IntoMap
         @ViewModelKey(ListingViewModel.class)
-        ViewModel forecastListViewModel(ListingViewModelImpl viewModel);
+        ViewModel listingViewModel(ListingViewModelImpl viewModel);
     }
 }

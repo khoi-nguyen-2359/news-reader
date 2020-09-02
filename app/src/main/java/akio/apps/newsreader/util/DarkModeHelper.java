@@ -16,6 +16,8 @@ public class DarkModeHelper {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else if (resources.getString(R.string.pref_value_dark_mode_night_yes).equals(darkModePrefValue)) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (resources.getString(R.string.pref_value_dark_mode_night_battery).equals(darkModePrefValue)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
         }
     }
 }

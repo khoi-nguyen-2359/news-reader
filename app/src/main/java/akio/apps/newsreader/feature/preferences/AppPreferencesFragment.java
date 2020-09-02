@@ -11,7 +11,7 @@ import androidx.preference.PreferenceManager;
 import akio.apps.newsreader.R;
 import akio.apps.newsreader.util.DarkModeHelper;
 
-public class ApplicationPreferencesFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class AppPreferencesFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -34,8 +34,8 @@ public class ApplicationPreferencesFragment extends PreferenceFragmentCompat imp
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
-    public static ApplicationPreferencesFragment createInstance() {
-        return new ApplicationPreferencesFragment();
+    public static AppPreferencesFragment createInstance() {
+        return new AppPreferencesFragment();
     }
 
     @Override

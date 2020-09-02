@@ -45,6 +45,13 @@ public class ListingFragment extends BaseFragment {
         return viewBinding.getRoot();
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        listingEventListener = null;
+    }
+
     protected void initDependencies() {
         listingViewModel = createViewModel(ListingViewModel.class);
     }

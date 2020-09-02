@@ -1,10 +1,10 @@
-package akio.apps.newsreader;
+package akio.apps.newsreader.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class TestHelper {
+public class IoHelper {
 
     public static final String readTextStream(InputStream inputStream) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();

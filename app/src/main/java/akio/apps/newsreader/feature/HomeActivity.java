@@ -13,7 +13,7 @@ import akio.apps.newsreader.databinding.ActivityHomeBinding;
 import akio.apps.newsreader.feature.browser.BrowserFragment;
 import akio.apps.newsreader.feature.listing.ListingEventListener;
 import akio.apps.newsreader.feature.listing.ListingFragment;
-import akio.apps.newsreader.feature.preferences.ApplicationPreferencesFragment;
+import akio.apps.newsreader.feature.preferences.AppPreferencesFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
                 .commit();
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_side_content_fragment_container, ApplicationPreferencesFragment.createInstance())
+                .replace(R.id.home_side_content_fragment_container, AppPreferencesFragment.createInstance())
                 .commit();
     }
 

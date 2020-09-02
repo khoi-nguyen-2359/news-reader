@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import akio.apps.newsreader.TestHelper;
+import akio.apps.newsreader.util.IoHelper;
 import akio.apps.newsreader.data.article.entity.ArticleEntity;
 import akio.apps.newsreader.data.article.entity.FeedEntity;
 import okhttp3.OkHttpClient;
@@ -44,7 +44,7 @@ public class VneRssApiTest {
     @Test
     public void testRetrofitApiModelParsing() throws IOException {
         InputStream resourceStream = this.getClass().getClassLoader().getResourceAsStream("rss_sample.xml");
-        String responseString = TestHelper.readTextStream(resourceStream);
+        String responseString = IoHelper.readTextStream(resourceStream);
         resourceStream.close();
         mockServer.enqueue(
                 new MockResponse()

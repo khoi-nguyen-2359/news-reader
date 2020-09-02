@@ -73,7 +73,12 @@ public class ListingFragment extends BaseFragment {
     }
 
     private Observer<? super List<Article>> articleListObserver = (Observer<List<Article>>) articles -> {
-        listingAdapter.submitList(articles);
+        listingAdapter.submitList(articles, new AsyncListListener() {
+            @Override
+            public void onCurrentListChanged() {
+                viewBinding.listingArticlesRecyclerView.smoothScrollToPosition(0);
+            }
+        });
     };
 
     private Observer<? super Boolean> isInProgressObserver = (Observer<Boolean>) isInProgress -> {

@@ -1,7 +1,5 @@
 package akio.apps.newsreader.feature.listing;
 
-import android.graphics.drawable.Drawable;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,8 +47,15 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         return listDiffer.getCurrentList().size();
     }
 
-    public void submitList(List<Article> articleList) {
+    public void submitList(List<Article> articleList, AsyncListListener asyncListListener) {
         listDiffer.submitList(articleList);
+        listDiffer.addListListener(new AsyncListDiffer.ListListener<Article>() {
+            @Override
+            public void onCurrentListChanged(@NonNull List<Article> previousList, @NonNull List<Article> currentList) {
+                asyncListListener.onCurrentListChanged();
+                listDiffer.removeListListener(this);
+            }
+        });
     }
 
     public static class ArticleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

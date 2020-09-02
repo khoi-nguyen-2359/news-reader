@@ -43,12 +43,25 @@ public class ListingViewModelImpl extends ListingViewModel {
     }
 
     private final Observer<? super Resource<List<ArticleEntity>>> articleListObserver = (Observer<Resource<List<ArticleEntity>>>) listResource -> {
+        List<Article> articleListValue = null;
+        Throwable errorValue = null;
         if (listResource instanceof Resource.Success) {
             Resource.Success<List<ArticleEntity>> successList = (Resource.Success<List<ArticleEntity>>) listResource;
-            articleList.setValue(articleMapper.map(successList.getData()));
+            articleListValue = articleMapper.map(successList.getData());
         } else if (listResource instanceof Resource.Error) {
             Resource.Error<List<ArticleEntity>> errorList = (Resource.Error<List<ArticleEntity>>) listResource;
-            error.setValue(new Event<>(errorList.getError()));
+            if (errorList.getData() != null) {
+                articleListValue = articleMapper.map(errorList.getData());
+            }
+            errorValue = errorList.getError();
+        }
+
+        if (articleListValue != null) {
+            articleList.setValue(articleListValue);
+        }
+
+        if (errorValue != null) {
+            error.setValue(new Event(errorValue));
         }
 
         isInProgress.setValue(listResource instanceof Resource.Loading);

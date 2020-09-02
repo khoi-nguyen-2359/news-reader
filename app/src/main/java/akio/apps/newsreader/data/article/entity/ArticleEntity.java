@@ -15,10 +15,20 @@ public class ArticleEntity {
     private String link;
 
     @Element(name = "pubDate")
-    private String pubDateTime;
+    private String pubDate;
 
     @Element(name = "guid")
     private String guid;
+
+    public ArticleEntity(){}
+
+    public ArticleEntity(String guid, String title, String description, String pubDate, String link) {
+        this.guid = guid;
+        this.title = title;
+        this.description = description;
+        this.pubDate = pubDate;
+        this.link = link;
+    }
 
     public String getTitle() {
         return title;
@@ -32,12 +42,12 @@ public class ArticleEntity {
         return link;
     }
 
-    public String getPubDateTime() {
-        return pubDateTime;
+    public String getPubDate() {
+        return pubDate;
     }
 
-    public void setPubDateTime(String pubDateTime) {
-        this.pubDateTime = pubDateTime;
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
     }
 
     public void setLink(String link) {

@@ -1,9 +1,14 @@
 package akio.apps.newsreader.data.article;
 
+import android.content.Context;
+
+import androidx.room.Room;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
 import akio.apps.newsreader.BuildConfig;
+import akio.apps.newsreader.data.article.db.ArticleDatabase;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
@@ -19,6 +24,17 @@ public class ArticleDataModule {
     interface Bindings {
         @Binds
         ArticleRepository articleRepository(ArticleRepositoryImpl repo);
+    }
+
+    @Provides
+    @Singleton
+    ArticleDatabase articleDatabase(Context appContext) {
+        return Room.databaseBuilder(
+                appContext,
+                ArticleDatabase.class,
+                "article_database"
+        )
+                .build();
     }
 
     @Provides
